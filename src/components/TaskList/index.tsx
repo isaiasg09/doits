@@ -6,14 +6,15 @@ import { Container } from './styles';
 
 type TaskListProps = {
   taskList: Array<ItemProps>;
+  removeTask: (task: ItemProps) => void;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ taskList }) => {
+const TaskList: React.FC<TaskListProps> = ({ taskList, removeTask }) => {
 
   return (
     <Container>
       {taskList.map((item, index) => (
-        <TaskItem item={item} key={index}/>
+        <TaskItem item={item} key={index} removeTask={removeTask}/>
       ))}
     </Container>
   )

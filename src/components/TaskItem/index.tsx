@@ -10,19 +10,19 @@ import {
 
 import { ItemProps } from '../../types/Item';
 
-import { Input,Container } from './styles';
+import { Input, Container, Button } from './styles';
 
 type TaskItemProps = {
   item: ItemProps;
-  key: number;
+  removeTask: (task: ItemProps) => void;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ item, key }) => {
+const TaskItem: React.FC<TaskItemProps> = ({ item, removeTask }) => {
   const [isChecked, setIsChecked] = useState(item.done);
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
-    backgroundColor: isChecked ? "#23a823" : "#fff",
-    borderColor: isChecked ? "#23a823" : "#ddd",
+    backgroundColor: isChecked ? "#23a823" : "#181a1b",
+    borderColor: isChecked ? "#23a823" : "#3a3e41",
     config: config.gentle,
     ref: checkboxAnimationRef,
     cursor: "pointer",
@@ -34,7 +34,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ item, key }) => {
   const checkmarkAnimationRef = useSpringRef();
   const checkmarkAnimationStyle = useSpring({
     x: isChecked ? 0 : checkmarkLength,
-    config: config.gentle,
+    config: config.stiff,
     ref: checkmarkAnimationRef
   });
 
@@ -44,6 +44,10 @@ const TaskItem: React.FC<TaskItemProps> = ({ item, key }) => {
       : [checkmarkAnimationRef, checkboxAnimationRef],
     [0, 0.1]
   );
+
+  function handleRemoveTaskItem(task: ItemProps) {
+    removeTask(task);
+  }
 
   return (
     <Container description={item.description} done={isChecked}>
@@ -78,7 +82,9 @@ const TaskItem: React.FC<TaskItemProps> = ({ item, key }) => {
 
       <h2 className={isChecked ? "strike" : ""} >{item.description}</h2>
 
-      <p>{isChecked ? 'Done' : 'Not Done'}</p>
+      {/* <p>{isChecked ? 'Done' : 'Not Done'}</p> */}
+
+      <Button onClick={() => handleRemoveTaskItem(item)}>-</Button>
     </Container>
   );
 }

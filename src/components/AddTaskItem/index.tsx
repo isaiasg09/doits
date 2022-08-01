@@ -13,7 +13,7 @@ const AddTaskItem: React.FC<AddTaskItemProps> = ({ addTask }) => {
   function handleAddTaskItem() {
     if(inputText) {
       addTask(inputText);
-      toast.success('Task added successfully! ' + inputText);
+      toast.success('Task added successfully!');
     } else {
       toast.error('Enter a description!');
     }
@@ -23,7 +23,6 @@ const AddTaskItem: React.FC<AddTaskItemProps> = ({ addTask }) => {
 
   function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.code === 'Enter' ) {
-      console.log("Enter key pressed");
       handleAddTaskItem();
     }
   };
@@ -32,7 +31,7 @@ const AddTaskItem: React.FC<AddTaskItemProps> = ({ addTask }) => {
     <Container>
       <Input 
         type="text" 
-        placeholder="Add new task..." 
+        placeholder="Add new task" 
         value={inputText}  
         onChange={e => setInputText(e.target.value)} 
         onKeyUp={e => handleKeyUp(e)} 

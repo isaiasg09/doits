@@ -55,9 +55,9 @@ export const Container = styled.div<ItemContainerProps>`
   }
   
   @media screen and (max-width: 425px) {
-    font-size: 4vw;
+    font-size: 6vw;
     text-align: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 20px;
     p {
       display: none;
@@ -87,4 +87,31 @@ export const Input = styled.input`
   position: absolute;
   white-space: nowrap;
   width: 1px;
+`;
+
+export const Button = styled.button`
+  width: 32px;
+  height: 32px;
+
+  background-color: transparent;
+
+  border: none;
+  border-radius: 2rem;
+  
+  text-align: center;
+  font-size: 1.8rem;
+  
+  cursor: pointer;
+  transition: 0.2s ease;
+
+
+  &:hover {
+    color: red;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.9);
+    background-color: rgba(83, 94, 101, 0.99);
+  }
 `;

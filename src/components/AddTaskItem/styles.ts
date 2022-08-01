@@ -17,6 +17,7 @@ export const Input = styled.input`
   background-color: #3b4254;
   outline: transparent;
   transition: .2s ease-in-out;
+  text-align: center;
 
   &:focus {
     background: transparent;

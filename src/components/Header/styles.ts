@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.h1`
   color: #fff;
-  text-align: center; 
+  text-align: center;
   border-width: 1px;
   border-style: solid;
   border-image: linear-gradient(to left, #17181f 1%, #444 50%, #17181f 100%) 

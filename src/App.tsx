@@ -10,30 +10,37 @@ import TaskList from './components/TaskList';
 import { Container, Area } from './App.styles';
 
 function App() {
-  const [ list, setList ] = useState<ItemProps[]>([
-    { id: 1, description: 'Comprar pão na padaria', done: false },
-    { id: 2, description: 'Estudar TS', done: true },
-    { id: 3, description: 'Fazer coisas', done: false },
-  ]);
+  const [ list, setList ] = useState<ItemProps[]>([]);
 
   function addTask(description: string) {
     const newList = [...list];
     newList.push({ 
-      id: list.length+1, 
+      id: list.length, 
       description: description, 
       done: false 
     });
     setList(newList);
   }
 
+  function removeTask(task: ItemProps) {
+    const newList = [...list];
+
+    const index = newList.indexOf(task);
+    if (index > -1) { // only splice array when item is found
+      newList.splice(index, 1); // 2nd parameter means remove one item only
+    }    
+  
+    setList(newList);
+  }
+
   return (
     <Container>
         <Area>
-          <Header />
+        <Header />
 
           <AddTaskItem addTask={addTask}/>
 
-          <TaskList taskList={list}/>
+          <TaskList taskList={list} removeTask={removeTask}/>
 
           <Toaster 
             position="bottom-center"
